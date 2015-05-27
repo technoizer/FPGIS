@@ -30,6 +30,9 @@
           <center><b>TOOLS</b></center>
             <hr>
             <button onclick="draw()" style="position:fixed z-index:10">Draw Polygon</button>
+            <form action = "<?php echo base_url(); ?>auth/doLogout">
+                <button style="position:fixed z-index:10">Do Logout</button>
+            </form>
         </div>
         <div style="width: 100%; height: 100%" id="mapContainer"></div>
         
