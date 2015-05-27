@@ -6,7 +6,7 @@ class Akun extends CI_Model
 	public function login($username, $password)
 	{
 		//select * from user where username = $username and password = $password
-		$sql = "SELECT username FROM akun where Username = '$username' and Password = '$password'";
+		$sql = "SELECT username FROM akun where Username = '$username' and Pass = MD5('$password')";
         $query = $this->db->query($sql);
 		
 		if ($query->num_rows() > 0)
@@ -26,7 +26,7 @@ class Akun extends CI_Model
 			array
 			(
 				'username' => $username,
-				'password' => $password,
+				'pass' => MD5($password),
 				'nama_lengkap' => $name,
 				'jabatan' => $job,
 				'email' => $email
@@ -39,7 +39,7 @@ class Akun extends CI_Model
 		}
 		else
 		{
-			$sql = "INSERT INTO akun (Username, Password,nama_lengkap,email,jabatan) VALUES ('$username','$password','$name','email','jabatan')";
+			$sql = "INSERT INTO akun (Username, Pass,nama_lengkap,email,jabatan) VALUES ('$username',MD5('$password'),'$name','email','jabatan')";
 			$this->db->query($sql);
 			return False;
 		}
