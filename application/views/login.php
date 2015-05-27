@@ -9,6 +9,8 @@
         <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
   </head>
   <body>
+      <h1 class="text-center deskripsi">Community Web Mapping</h1>
+      <h3 class="text-center deskripsi bawah">a site where you can add new spot on maps and share with others</h3>
       <div class="container">
        <div class="row">
         <div class="col-md-4 col-md-offset-4">
