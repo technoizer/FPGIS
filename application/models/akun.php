@@ -39,7 +39,7 @@ class Akun extends CI_Model
 		}
 		else
 		{
-			$sql = "INSERT INTO akun (Username, Pass,nama_lengkap,email,jabatan) VALUES ('$username',MD5('$password'),'$name','email','jabatan')";
+			$sql = "INSERT INTO akun (Username, Pass,nama_lengkap,email,jabatan) VALUES ('$username',MD5('$password'),'$name','$email','$job')";
 			$this->db->query($sql);
 			return False;
 		}
