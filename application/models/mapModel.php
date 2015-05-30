@@ -15,4 +15,21 @@ class MapModel extends CI_Model {
 
         $this->db->insert('tempat', $data); 
 	}
+
+	public function getTempat(){
+		$this->db->select('*');
+		$this->db->from('tempat');
+		$this->db->join('akun', 'akun.id_user = tempat.id_user');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	public function getTempatById($id){
+		$this->db->select('*');
+		$this->db->from('tempat');
+		$this->db->join('akun', 'akun.id_user = tempat.id_user');
+		$this->db->where('id_tempat',$id);
+		$query = $this->db->get(); 
+		return $query->result();
+	}
 }

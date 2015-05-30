@@ -2,7 +2,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <script src="http://js.api.here.com/se/2.5.4/jsl.js" type="text/javascript" charset="utf-8"></script>
+   <!--<script src="http://js.api.here.com/se/2.5.4/jsl.js" type="text/javascript" charset="utf-8"></script>-->
+    <script charset="UTF-8" src="https://js.cit.api.here.com/ee/2.5.4/jsl.js?with=all"></script> 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=7; IE=EmulateIE9; IE=10" />
@@ -43,10 +44,12 @@
 
     <script>
         $(document).ready(function(){
-            refreshPolygon();
+            // refreshPolygon();
         });
         nokia.Settings.set("app_id", "sGRBEyHKij3A9ZGTNsB2");
         nokia.Settings.set("app_code", "7KJaKsSK-66fcpqDsqy3dQ");
+        nokia.Settings.set("serviceMode", "cit");
+		(document.location.protocol == "https:") && nokia.Settings.set("secureConnection", "force");
 
         var map = new nokia.maps.map.Display(
             document.getElementById("mapContainer"), {
@@ -64,6 +67,46 @@
                 center: [52.51, 13.4]
             }
         );
+
+
+        var kml = new nokia.maps.kml.Manager();
+
+		// We define a callback function for parsing kml file,
+		// and then push the parsing result to map display
+		var onParsed = function (kmlManager) {
+			var resultSet,
+				container,
+				boundingBox;
+			
+			// KML file was successfully loaded
+			if (kmlManager.state == "finished") {
+				// KML file was successfully parsed
+				resultSet = new nokia.maps.kml.component.KMLResultSet(kmlManager, map);
+				resultSet.addObserver("state", function (resultSet) {
+					if (resultSet.state == "finished") {
+						boundingBox = container.getBoundingBox();
+						// Here we check whether we have valid bounding box or no. 
+						// In case if KML document does not contain any supported displayable element, bounding box will be a null, 
+						// therefore it will not be possible to zoom to the not existing object. 
+						if (boundingBox) {
+							// Switch the viewport of the map to show all KML map objects within the container
+							map.zoomTo(boundingBox);
+						}
+					}
+				});
+				// Add the container to the map's object collection so it will be rendered onto the map.
+				map.objects.add(container = resultSet.create());
+			}
+		};
+		// Add an observer to KML manager
+		kml.addObserver("state", onParsed);
+
+		// Trigger parsing the earthquake kml file, when the map emmits the "displayready" event
+		// Note: please adapt the following path to the file you want to parse.
+		map.addListener("displayready", function () {
+		   kml.parseKML("<?php echo base_url()?>/assets/kml/coba.kml");
+		});
+
 
         var polygons = new Array();
 

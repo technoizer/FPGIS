@@ -93,6 +93,7 @@
         });
         $('#polyColor').val("#FF0000")
         var color ="#FF000088";
+        
         function draw(){
             var tmp = coordinates;
             var geoStrip = new nokia.maps.geo.Strip(tmp,'auto');
@@ -173,12 +174,20 @@
         }
 
         function savePolygon(){
-            $('#koordinat').val(coordinates.toString());
-            var coord = $('#koordinat').val();
+            //$('#koordinat').val(coordinates.toString());
+            var polyCoord = "";
+            for (i = 0; i<coordinates.length;i++){
+                polyCoord += coordinates[i].latitude;
+                polyCoord += "!"
+                polyCoord += coordinates[i].longitude;
+                polyCoord += "#"
+            }
+            // alert(polyCoord);
+            var coord = polyCoord;
             var nama_tempat = $('#nama_tempat').val();
             var deskripsi = $('#des_tempat').val();
             var color = $('#polyColor').val();
-            $.post( "map/insert_poly", 
+            $.post( "<?php echo base_url(); ?>map/insert_poly", 
                 { 
                     coord : coord, 
                     nama : nama_tempat,
