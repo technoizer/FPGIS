@@ -104,6 +104,7 @@
             <li><a href="<?php echo base_url(); ?>map/">Maps</a></li>
             <li><a href="<?php echo base_url(); ?>map/addPolygon    ">Create New Place</a></li>
             <li class="active"><a href="#">View KML</a></li>
+            <li><a href="<?php echo base_url(); ?>map/downloadAll">Download All KML</a></li>
           </ul>
           </ul>
           <ul class="nav navbar-nav navbar-right">

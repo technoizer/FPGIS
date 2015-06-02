@@ -106,6 +106,7 @@
             <li><a href="<?php echo base_url(); ?>map/">Maps</a></li>
             <li class="active"><a href="#">Create New Place</a></li>
             <li><a href="<?php echo base_url(); ?>map/kmlViewer">View KML</a></li>
+            <li><a href="<?php echo base_url(); ?>map/downloadAll">Download All KML</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a><?php echo $_SESSION["username"]; ?></a></li>
