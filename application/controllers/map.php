@@ -2,6 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Map extends CI_Controller {
+	function __construct()
+	{
+		parent::__construct();
+		if($this->session->userdata('login') != TRUE)
+		{
+			redirect('auth');
+		}
+	}
+
 	public function index(){
 		$this->load->view('home2');
 	}
@@ -20,8 +29,9 @@ class Map extends CI_Controller {
         $deskripsi = $_POST['deskripsi'];
         $color = $_POST['color'];
         $this->load->model('mapModel');
-        $this->mapModel->insert($coord, $nama, $deskripsi, $color);
-		
+        $this->load->model('akun');
+        $idUser = $this->akun->getIdUser($this->session->userdata('username'));
+        $this->mapModel->insert($coord, $nama, $deskripsi, $color, $idUser);
 	}
 	public function edit($id){
 		echo $id;

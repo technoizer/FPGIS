@@ -45,6 +45,20 @@ class Akun extends CI_Model
 		}
 	}
 	
+	public function getIdUser($username)
+	{
+		$query = $this->db->query("SELECT id_user FROM akun WHERE username = '$username'");
+		if ($query->num_rows() > 0)
+		{
+		   $row = $query->row(); 
+		   return $row->id_user;
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
 }
 
 /* End of file akun.php */
