@@ -33,14 +33,35 @@ class Map extends CI_Controller {
         $idUser = $this->akun->getIdUser($this->session->userdata('username'));
         $this->mapModel->insert($coord, $nama, $deskripsi, $color, $idUser);
 	}
-	public function edit($id){
-		echo $id;
+	public function update_poly()
+	{
+		$id = $_POST['id'];
+		$kategori = $_POST['kategori'];
+		$coord = $_POST['coord']; 
+        $nama = $_POST['nama'];
+        $deskripsi = $_POST['deskripsi'];
+        $color = $_POST['color'];
+        $this->load->model('mapModel');
+        $this->load->model('akun');
+        $this->mapModel->update($coord, $nama, $deskripsi, $color, $id, $kategori);
+	}
+	public function edit($id)
+	{
+		$data['id'] = $id;
+		$this->load->view('edit',$data);
 	}
 
 	public function getData()	
 	{
 		$this->load->model('mapModel');
 		$data['tempat'] = $this->mapModel->getTempat();
+		echo json_encode($data);
+	}
+
+	public function getDataById($id)	
+	{
+		$this->load->model('mapModel');
+		$data['tempat'] = $this->mapModel->getTempatById($id);
 		echo json_encode($data);
 	}
 

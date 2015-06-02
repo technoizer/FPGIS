@@ -17,6 +17,19 @@ class MapModel extends CI_Model {
         $this->db->insert('tempat', $data); 
 	}
 
+	public function update($coord, $nama, $deskripsi, $color, $id, $kategori)
+	{
+		$data = array(
+           'color' => $color,
+           'nama_tempat' => $nama,
+           'deskripsi_tempat' => $deskripsi,
+           'koordinat' => $coord,
+           'kategori' => $kategori
+        );
+		$this->db->where('id_tempat',$id);
+        $this->db->update('tempat', $data); 
+	}
+
 	public function getTempat(){
 		$this->db->select('*');
 		$this->db->from('tempat');
