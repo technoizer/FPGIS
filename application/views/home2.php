@@ -2,6 +2,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
     <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
     <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js"  type="text/javascript" charset="utf-8"></script>
@@ -10,6 +11,7 @@
     <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/ie-emulation-modes-warning.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=7; IE=EmulateIE9; IE=10" />
     <style type="text/css">
         html {
@@ -25,9 +27,31 @@
             height: 100%;
         }
 
+        button{
+            font-size: 10pt;
+            margin-left: 11pt;
+            color:black;
+            border:none;
+        }
+        button:hover{
+            background-color: white;
+        }
+
+        .footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 2.5%;
+          font-size: 9pt;
+          text-align: right;
+          background-color: #00001F;
+          color:black;
+        }
+
         #mapContainer {
+            margin-top: 60px;
             width: 100%;
-            height: 100%;
+            height: 90%;
             left: 0;
             top: 0;
             position: absolute;
@@ -37,7 +61,8 @@
             top: 1%;
             left: 10px;
             z-index: 5;
-            background-color: #fff;
+            color:white;
+            background-color:#00001F;
             padding: 15px;
             border: 1px solid #999;
         }
@@ -46,12 +71,57 @@
         }
         .bubble .text {
             font-size: 10pt;
+            padding-left: 23px;
         }
+
+        .navbar{
+            z-index: 1;
+        }
+
     </style>
 </head>
 <body>
+
+    
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="#">Community Web Mapping</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="<?php echo base_url(); ?>map/">Maps <span class="sr-only">(current)</span></a></li>
+            <li><a href="<?php echo base_url(); ?>map/addPolygon">Create New Place</a></li>
+            <li><a href="<?php echo base_url(); ?>map/kmlViewer">View KML</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a><?php echo $_SESSION["username"]; ?></a></li>
+            <li><a href="../auth/doLogout">Log Out</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <input type="hidden" value="<?php echo $_SESSION["username"]; ?>" id="user">
+
     <div id="mapContainer"></div>
 
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted"> GIS 2015 - Teknik Informatika FTIf ITS</p>
+      </div>
+    </footer>
+    
     <script>
         $(document).ready(function(){
             refreshPolygon();
@@ -99,6 +169,7 @@
                    for (var i in result['tempat']) {
                         var coor = result['tempat'][i]['koordinat'];
                         var contributor = result['tempat'][i]['nama_lengkap'];
+                        var username = result['tempat'][i]['username'];
                         var kategori = result['tempat'][i]['kategori'];
                         var deskripsi = result['tempat'][i]['deskripsi_tempat'];
                         var color = result['tempat'][i]['color'];
@@ -115,7 +186,7 @@
                             //console.log(lat + " " + lng);
                         };
 
-                        draw(path, color, name, kategori, deskripsi, contributor,id);
+                        draw(path, color, name, kategori, deskripsi, contributor,id,username);
                    }
 
                },
@@ -134,8 +205,8 @@
             } : null;
         }
 
-        function draw(coor, color, name, kategori, deskripsi, contributor,id_tempat){
-            var warna = "rgba("+hexToRgb(color).r+","+hexToRgb(color).g+","+hexToRgb(color).b+",0.6)";
+        function draw(coor, color, name, kategori, deskripsi, contributor,id_tempat,username){
+            var warna = "rgba("+hexToRgb(color).r+","+hexToRgb(color).g+","+hexToRgb(color).b+",0.5)";
             var polygon = new H.map.Polygon(coor, { 
                 style: { 
                     lineWidth: 1,
@@ -143,13 +214,19 @@
                 }
             });
             map.addObject(polygon);
+            var str = "<center style='padding-left:23px;'><h3>INFORMATION</h3></center>"+
+                    "<table style='font-size:13pt;margin-left:23px;'><div class ='text'><tr><td><b>Contributor</td> <td>&nbsp:</b>&nbsp" + contributor + "</tr></div>"+
+                    "<div class ='text'><tr><td><b>Category</td> <td>&nbsp:</b>&nbsp" + kategori + "</tr></div>"+
+                    "<div class ='text'><tr><td><b>Name</td> <td>&nbsp:</b>&nbsp" + name + "</tr></div>"+
+                    "<div class ='text'><tr><td><b>Description</td> <td>&nbsp:</b>&nbsp" + deskripsi + "</tr></div></table>"+
+                    "<center style='margin-top:10px;margin-bottom:15px;text-align:right;'>";
+            if (username == $("#user").val()){
+                str+="<a href=<?php echo base_url();?>map/edit/"+id_tempat+"><button>Edit</button></a>"+
+                    "<a href=<?php echo base_url();?>map/edit/"+id_tempat+"><button>Delete</button></a>";
+            }
+            str+= "<a href=<?php echo base_url();?>map/writeKML/"+id_tempat+"><button>Download</button></a></center>";
             polygon.setData(
-                    "<center><h3>INFORMATION</h3></center>"+
-                    "<div class ='text'><b>Contributor :</b> <br>==> " + contributor + "</div>"+
-                    "<div class ='text'><b>Catagory :</b> <br>==> " + kategori + "</div>"+
-                    "<div class ='text'><b>Place Name :</b> <br>==> " + name + "</div>"+
-                    "<div class ='text'><b>Description :</b> <br>==> " + deskripsi + "</div>"+
-                    "<hr><center><a href=<?php echo base_url();?>map/edit/"+id_tempat+"><button>Edit</button></a></center>"
+                    str
             );
             polygon.addEventListener("tap",showBubble);
 
@@ -164,7 +241,7 @@
                 ui.addBubble(bubble);
             }
         }
-
-        
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 </body>

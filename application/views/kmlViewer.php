@@ -3,9 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
    <!--<script src="http://js.api.here.com/se/2.5.4/jsl.js" type="text/javascript" charset="utf-8"></script>-->
-    <script charset="UTF-8" src="https://js.cit.api.here.com/ee/2.5.4/jsl.js?with=all"></script> 
+    <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://js.api.here.com/se/2.5.4/jsl.js" type="text/javascript" charset="utf-8"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/ie-emulation-modes-warning.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=7; IE=EmulateIE9; IE=10" />
     <style type="text/css">
         html {
@@ -21,26 +23,112 @@
             height: 100%;
         }
 
+        button{
+            font-size: 10pt;
+            color:black;
+            border:none;
+        }
+        button:hover{
+            background-color: white;
+        }
+
+        .footer {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 2.5%;
+          font-size: 9pt;
+          text-align: right;
+          background-color: #00001F;
+          color:black;
+        }
+
         #mapContainer {
+            margin-top: 60px;
             width: 100%;
-            height: 100%;
+            height: 90%;
             left: 0;
             top: 0;
             position: absolute;
         }
+
         #panel {
             position: absolute;
             top: 1%;
-            left: 10px;
-            z-index: 5;
-            background-color: #fff;
+            float:right;
+            right:10px;
+            z-index: 1;
+            top:72px;
+            color:white;
+            background-color:#00001F;
             padding: 15px;
             border: 1px solid #999;
+        }
+        .bubble {
+            padding: 5px;
+        }
+        .bubble .text {
+            font-size: 10pt;
+            padding-left: 23px;
+        }
+
+        .navbar{
+            z-index: 1;
+        }
+
+        hr{
+            margin-top: 7px;
+            margin-bottom:7px;
         }
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="#">Community Web Mapping</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav">
+            <li><a href="<?php echo base_url(); ?>map/">Maps</a></li>
+            <li><a href="<?php echo base_url(); ?>map/addPolygon    ">Create New Place</a></li>
+            <li class="active"><a href="#">View KML</a></li>
+          </ul>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a><?php echo $_SESSION["username"]; ?></a></li>
+            <li><a href="<?php echo base_url(); ?>auth/doLogout">Log Out</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id="panel">
+        <center><b>Upload KML</b></center>
+        <hr>
+        File : <br>
+        <input type="file" id="file" style="width:200px;"><br>
+        <button onclick="#" style="width:200px">Upload</button><br>
+    </div>
+
     <div id="mapContainer"></div>
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted"> GIS 2015 - Teknik Informatika FTIf ITS</p>
+      </div>
+    </footer>
 
     <script>
         $(document).ready(function(){

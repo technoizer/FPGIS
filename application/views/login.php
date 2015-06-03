@@ -80,7 +80,6 @@
         </div>
       </div>
     </div>
-
       <script>
         $(function() {
             $('#login-form-link').click(function(e) {

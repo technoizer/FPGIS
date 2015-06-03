@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='utf-8'?>
+<kml xmlns='http://www.opengis.net/kml/2.2'>
+  <Style id='globalStyles'>
+      <LineStyle id='line'>
+        <color>88</color>
+        <width>3</width>
+      </LineStyle>
+      <PolyStyle id='poly'>
+        <color>88</color>
+        <fill>0</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <textColor>99ffa000</textColor>
+        <text>
+          <![CDATA[
+            <span style='color:#1080DD; font-size:16px; font-weight:bold;'>$[name]</span>
+            <br/><br/>
+            <span style='font-family:Courier; font-size:12px;'>$[description]</span>
+            <br/><br/>
+          ]]>
+        </text>
+      </BalloonStyle>
+  </Style>
+  <Placemark>
+    <name></name>
+    <description>
+        <![CDATA[
+          
+        ]]>
+    </description>
+    <styleUrl>#globalStyles</styleUrl>
+    <Style>
+      <PolyStyle>
+        <color>88</color>
+      </PolyStyle>
+    </Style>
+    <Polygon>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>
+            
+          </coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+</kml>

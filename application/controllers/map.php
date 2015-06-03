@@ -16,7 +16,7 @@ class Map extends CI_Controller {
 	}
 	
 	public function addPolygon(){
-		$this->load->view('demo');
+		$this->load->view('createplace');
 	}
 
 	public function kmlViewer(){
@@ -28,10 +28,11 @@ class Map extends CI_Controller {
         $nama = $_POST['nama'];
         $deskripsi = $_POST['deskripsi'];
         $color = $_POST['color'];
+        $kategori = $_POST['kategori'];
         $this->load->model('mapModel');
         $this->load->model('akun');
         $idUser = $this->akun->getIdUser($this->session->userdata('username'));
-        $this->mapModel->insert($coord, $nama, $deskripsi, $color, $idUser);
+        $this->mapModel->insert($coord, $nama, $deskripsi, $color, $idUser,$kategori);
 	}
 	public function update_poly()
 	{

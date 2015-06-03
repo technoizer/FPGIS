@@ -75,13 +75,17 @@
             z-index: 1;
         }
 
+
         hr{
             margin-top: 7px;
             margin-bottom:7px;
         }
     </style>
+
 </head>
 <body>
+
+    
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -100,8 +104,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="<?php echo base_url(); ?>map/">Maps</a></li>
-            <li><a href="<?php echo base_url(); ?>map/addPolygon">Create New Place</a></li>
-            <li class="active"><a href="#">Edit Place</a></li>
+            <li class="active"><a href="#">Create New Place</a></li>
             <li><a href="<?php echo base_url(); ?>map/kmlViewer">View KML</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -115,17 +118,13 @@
     <div id="panel">
         <center><b>TOOLS</b></center>
         <hr>
-        <button onclick="zoomObject()" style="width:150px">Zoom To Object</button><br>
-        <hr>
         <button onclick="setPlaceMarker()" style="width:150px" id="point">Add Point Mode : OFF</button><br>
         <hr>
-        <button onclick="deleteLast()" style="width:150px">Delete Last Marker</button><br>
-        <hr>
+        <button onclick="deleteLast()" style="width:150px">Delete Last Marker</button><br><br>
         Color : <br>
-        <!-- <input type="text" placeholder="#rgba" id="polyColor" style="width:100px"> -->
-        <input onchange= "changeColor()" type="color" id="polyColor" style="width:150px">
-        <br>
-        <hr>
+            <!-- <input type="text" placeholder="#rgba" id="polyColor" style="width:100px"> -->
+        <input onchange= "changeColor()" type="color" id="polyColor" style="width:150px;height:30px;">
+        <br><br>
         Nama Tempat : <br>
         <input type="text" id="nama_tempat" style="width:150px;color:black;"><br><br>
         Kategori : <br>
@@ -134,10 +133,11 @@
             <option value="House">House</option>
         </select><br><br>
         Deskripsi : <br>
-        <textarea id="des_tempat" style="width:148px;color:black;" ></textarea><br>
+        <textarea id="des_tempat" style="width:148px;height:100px;color:black;" ></textarea><br>
         <input type="hidden" id="koordinat"><br>
         <button onclick="savePolygon()" style="width:150px">Save Polygon</button><br>
     </div>
+
     <div id="mapContainer"></div>
 
     <footer class="footer">
@@ -145,14 +145,11 @@
         <p class="text-muted"> GIS 2015 - Teknik Informatika FTIf ITS</p>
       </div>
     </footer>
-
+    
     <script>
         nokia.Settings.set("app_id", "sGRBEyHKij3A9ZGTNsB2");
         nokia.Settings.set("app_code", "7KJaKsSK-66fcpqDsqy3dQ");
-
-        $(document).ready(function(){
-              init();
-        });
+        
         var map = new nokia.maps.map.Display(
             document.getElementById("mapContainer"), {
                 components: [
@@ -165,7 +162,7 @@
                     new nokia.maps.map.component.TypeSelector(),
                     new nokia.maps.map.component.ScaleBar(),
                     new nokia.maps.map.component.InfoBubbles()],
-                zoomLevel: 10,
+                zoomLevel: 15,
                 center: [52.51, 13.4]
             }
         );
@@ -214,22 +211,6 @@
                 });
                 update();
             }
-        }
-
-        function placeInit(lat,lng){
-            i++;
-            var coord = new nokia.maps.geo.Coordinate(lat,lng);
-            var marker = new nokia.maps.map.StandardMarker([lat, lng], {
-                text: i, 
-                draggable: true  // Make the marker draggable
-            });
-            markers.push(marker);
-            coordinates.push(coord);
-            map.objects.add(marker);
-            marker.addListener("dragend", function (evt) {
-                update();
-            });
-            update();
         }
 
         function deleteLast(){
@@ -287,15 +268,13 @@
                 polyCoord += "#"
             }
             // alert(polyCoord);
-            var id = "<?php echo $id;?>"
             var coord = polyCoord;
             var nama_tempat = $('#nama_tempat').val();
             var deskripsi = $('#des_tempat').val();
             var color = $('#polyColor').val();
             var kategori = $('#kategori').val();
-            $.post( "<?php echo base_url(); ?>map/update_poly", 
+            $.post( "<?php echo base_url(); ?>map/insert_poly", 
                 { 
-                    id : id,
                     coord : coord, 
                     nama : nama_tempat,
                     deskripsi : deskripsi,
@@ -307,40 +286,8 @@
                   window.location.reload();
             });
         }
-       function init(){
-            $.ajax({
-               url : "<?php echo base_url();?>map/getDataById/<?php echo $id;?>",
-               type : 'post',
-               dataType : 'json',
-               success : function(result)
-               {    
-                    var coordinates = result['tempat'][0]['koordinat'].split('#');
-                    for (var j = 0; j< coordinates.length-1; j++) {
-                        var lat = parseFloat(coordinates[j].split('!')[0]);
-                        var lng = parseFloat(coordinates[j].split('!')[1]);
-                        placeInit(lat,lng);
-                    };
-
-                    
-                    $('#polyColor').val(result['tempat']['0']['color']);
-                    color = result['tempat']['0']['color']+"88";
-                    polygons[0].set({
-                        brush: { color : color}
-                    });
-
-                    $('#nama_tempat').val(result['tempat']['0']['nama_tempat']);
-                    $('#des_tempat').val(result['tempat']['0']['deskripsi_tempat']);
-                    $('#kategori').val(result['tempat']['0']['kategori']); 
-               },
-               error : function(res)
-               {
-               }
-           });
-        }
-
-        function zoomObject(){
-            map.zoomTo(polygons[0].getBoundingBox());
-        }
         
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 </body>
