@@ -215,10 +215,10 @@
             });
             map.addObject(polygon);
             var str = "<center style='padding-left:23px;'><h3>INFORMATION</h3></center>"+
-                    "<table style='font-size:13pt;margin-left:23px;'><div class ='text'><tr><td><b>Contributor</td> <td>&nbsp:</b>&nbsp" + contributor + "</tr></div>"+
-                    "<div class ='text'><tr><td><b>Category</td> <td>&nbsp:</b>&nbsp" + kategori + "</tr></div>"+
-                    "<div class ='text'><tr><td><b>Name</td> <td>&nbsp:</b>&nbsp" + name + "</tr></div>"+
-                    "<div class ='text'><tr><td><b>Description</td> <td>&nbsp:</b>&nbsp" + deskripsi + "</tr></div></table>"+
+                    "<table style='font-size:13pt;margin-left:23px;'><div class ='text'><tr><td><b>Contributor</td> <td>&nbsp:</td></b><td style='width:200px;'>&nbsp" + contributor + "</td></tr></div>"+
+                    "<div class ='text'><tr><td><b>Category</td> <td>&nbsp:</td></b><td>&nbsp" + kategori + "</td></tr></div>"+
+                    "<div class ='text'><tr><td><b>Name</td> <td>&nbsp:</td></b><td>&nbsp" + name + "</td></tr></div>"+
+                    "<div class ='text'><tr><td><b>Description</td> <td>&nbsp:</td></b><td>&nbsp" + deskripsi + "</td></tr></div></table>"+
                     "<center style='margin-top:10px;margin-bottom:15px;text-align:right;'>";
             if (username == $("#user").val()){
                 str+="<a href=<?php echo base_url();?>map/edit/"+id_tempat+"><button>Edit</button></a>"+
