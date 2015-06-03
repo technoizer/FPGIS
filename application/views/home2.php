@@ -51,7 +51,7 @@
         #mapContainer {
             margin-top: 60px;
             width: 100%;
-            height: 90%;
+            height: 88.5%;
             left: 0;
             top: 0;
             position: absolute;
@@ -140,7 +140,7 @@
             document.getElementById('mapContainer'),
             maptypes.terrain.map,
             {
-            zoom: 10,
+            zoom: 2,
             center: { lng: 13.4, lat: 52.51 },
             fixedCenter: false
         });
@@ -153,13 +153,18 @@
         var panorama = ui.getControl('panorama');
         var mapSettings = ui.getControl('mapsettings');
 
-        panorama.setAlignment('top-left');
-        mapSettings.setAlignment('top-left');
-        zoom.setAlignment('top-left');
-        scalebar.setAlignment('top-left');
+        mapSettings.setAlignment('left-middle');
+        panorama.setAlignment('left-middle');
+        zoom.setAlignment('left-middle');
 
         var polygons = new Array();
-
+        function doDelete(id_tempat){
+            if (confirm("Apakah anda yakin untuk menghapus this place  ?") == true) {
+                window.location.replace("<?php echo base_url();?>map/delete/"+id_tempat);
+            } else {
+                
+            }
+        }
         function refreshPolygon(){
            $.ajax({
                url : '<?php echo base_url();?>map/getData',
@@ -224,7 +229,7 @@
                     "<center style='margin-top:10px;margin-bottom:15px;text-align:right;'>";
             if (username == $("#user").val()){
                 str+="<a href=<?php echo base_url();?>map/edit/"+id_tempat+"><button>Edit</button></a>"+
-                    "<a href=<?php echo base_url();?>map/edit/"+id_tempat+"><button>Delete</button></a>";
+                    "<button onclick=doDelete("+id_tempat+")>Delete</button>";
             }
             str+= "<a href=<?php echo base_url();?>map/writeKML/"+id_tempat+"><button>Download</button></a></center>";
             polygon.setData(

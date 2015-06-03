@@ -70,6 +70,39 @@ class Map extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function upload(){
+		$data=$_FILES['file-0'];
+		$target_dir = "./assets/kml/";
+		$target_file = $target_dir . "baca.kml";
+		$uploadOk = 1;
+		$fileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		// Check file size
+		if ($data["size"] > 500000) {
+		    echo "Sorry, your file is too large.";
+		    $uploadOk = 0;
+		}
+		// Allow certain file formats
+		if($fileType != "kml") {
+		    echo "Sorry, only kml files are allowed.";
+		    $uploadOk = 0;
+		}
+		echo json_encode($data["tmp_name"]);
+		// Check if $uploadOk is set to 0 by an error
+		if ($uploadOk == 1){
+		    if (move_uploaded_file($data["tmp_name"], $target_file)) {
+		        echo "The file ". basename( $data["name"]). " has been uploaded.";
+		    } else {
+		        echo "Sorry, there was an error uploading your file.";
+		    }
+		}
+	}
+
+	public function delete($id){
+		// echo $id;
+		$this->load->model('mapModel');
+        $this->mapModel->delete($id);
+        redirect(base_url()."map");
+	}
 	public function writeKML($id){
 
 		$this->load->model('mapModel');
@@ -138,7 +171,7 @@ class Map extends CI_Controller {
     </Polygon>
   </Placemark>
 </kml>";
-		$myfile = fopen($data[0]->nama_tempat.'.kml',"w") or die("Unable to open file!");
+		$myfile = fopen('tes.kml',"w") or die("Unable to open file!");
 		fwrite($myfile, $kml);
 		fclose($myfile);
 

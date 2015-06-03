@@ -2,13 +2,14 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-   <!--<script src="http://js.api.here.com/se/2.5.4/jsl.js" type="text/javascript" charset="utf-8"></script>-->
+    <script charset="UTF-8" src="http://js.cit.api.here.com/se/2.5.4/jsl.js?with=all"></script> 
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://js.api.here.com/se/2.5.4/jsl.js" type="text/javascript" charset="utf-8"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/ie-emulation-modes-warning.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=7; IE=EmulateIE9; IE=10" />
+    
+    <script charset="UTF-8" src="./../../../..//examples/templates/js/exampleHelpers.js"></script>
     <style type="text/css">
         html {
             overflow:hidden;
@@ -120,7 +121,7 @@
         <hr>
         File : <br>
         <input type="file" id="file" style="width:200px;"><br>
-        <button onclick="#" style="width:200px">Upload</button><br>
+        <button onclick="doUpload()" style="width:200px">Upload</button><br>
     </div>
 
     <div id="mapContainer"></div>
@@ -153,9 +154,11 @@
                     new nokia.maps.map.component.ScaleBar(),
                     new nokia.maps.map.component.InfoBubbles()],
                 zoomLevel: 15,
-                center: [52.51, 13.4]
+                center: [52.51, 13.4],
+                baseMapType: nokia.maps.map.Display.TERRAIN
             }
         );
+
 
 
         var kml = new nokia.maps.kml.Manager();
@@ -192,57 +195,26 @@
 
 		// Trigger parsing the earthquake kml file, when the map emmits the "displayready" event
 		// Note: please adapt the following path to the file you want to parse.
-		map.addListener("displayready", function () {
-		   kml.parseKML("<?php echo base_url()?>/assets/kml/coba.kml");
-		});
 
+        function doUpload(){
+            var data = new FormData();
+            jQuery.each(jQuery('#file')[0].files, function(i, file) {
+                data.append('file-'+i, file);
+            });
 
-        var polygons = new Array();
-
-        function refreshPolygon(){
-           $.ajax({
-               url : 'map/getData',
-               type : 'post',
-               dataType : 'json',
-               success : function(result)
-               {      
-                   for (var i in result['tempat']) {
-                        var coor = result['tempat'][i]['koordinat'];
-                        var color = result['tempat'][i]['color']+"88";
-                        var coordinates = result['tempat'][i]['koordinat'].split('#');
-                        var path = new Array();
-                        for (var j = 0; j< coordinates.length-1; j++) {
-                            var lat = parseFloat(coordinates[j].split('!')[0]);
-                            var lng = parseFloat(coordinates[j].split('!')[1]);
-                            var point = new nokia.maps.geo.Coordinate(lat, lng);
-                            //alert(point);
-                            path.push(point);
-                            //console.log(lat + " " + lng);
-                        };
-
-                        draw(path, color);
-                   }
-
-               },
-               error : function(res)
-               {
-               }
-           });
-         }
-
-        function draw(coor, color){
-            var geoStrip = new nokia.maps.geo.Strip(coor,'auto');
-            var polygon = new nokia.maps.map.Polygon(geoStrip, {
-                precision: 36,
-                simplify: 16,
-                pen: { strokeColor: "#000", lineWidth: 1 },
-                brush: { color: color },
-                width: 1
-            })
-            map.objects.add(polygon);
-            polygons.push(polygon);
+            jQuery.ajax({
+                url: '<?php echo base_url();?>map/upload',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                type: 'POST',
+                success: function(data){
+                    alert("success");
+                    kml.parseKML("<?php echo base_url()?>/assets/kml/baca.kml");
+                }
+            });
         }
-
         
     </script>
 </body>

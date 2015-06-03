@@ -39,6 +39,10 @@ class MapModel extends CI_Model {
 		return $query->result();
 	}
 
+	public function delete($id){
+		$this->db->delete('tempat', array('id_tempat' => $id));
+	}
+
 	public function getTempatById($id){
 		$this->db->select('*');
 		$this->db->from('tempat');
