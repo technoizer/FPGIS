@@ -11,7 +11,7 @@ class Auth extends CI_Controller
 	{
 		if($this->session->userdata('login') == TRUE)
 		{
-			redirect('home');
+			redirect('map');
 		}
 		else
 		{
@@ -40,7 +40,7 @@ class Auth extends CI_Controller
 		{
 			$this->session->set_flashdata('pesan', 'Username atau password salah!');
 		}
-		redirect('home');
+		redirect('map');
 	}
 	
 	function doLogout()
@@ -76,7 +76,7 @@ class Auth extends CI_Controller
 			$data = array('username' => $username, 'login' => TRUE);
 			$this->session->set_userdata($data);
 		}
-		redirect('home');
+		redirect('map');
 	}
 }
 
