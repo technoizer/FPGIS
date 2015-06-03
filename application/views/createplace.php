@@ -45,7 +45,7 @@
         #mapContainer {
             margin-top: 60px;
             width: 100%;
-            height: 90%;
+            height: 88.5%;
             left: 0;
             top: 0;
             position: absolute;
@@ -62,6 +62,7 @@
             background-color:#00001F;
             padding: 15px;
             border: 1px solid #999;
+            border-radius: 15px;
         }
         .bubble {
             padding: 5px;
@@ -164,7 +165,8 @@
                     new nokia.maps.map.component.ScaleBar(),
                     new nokia.maps.map.component.InfoBubbles()],
                 zoomLevel: 15,
-                center: [52.51, 13.4]
+                center: [52.51, 13.4],
+                baseMapType: nokia.maps.map.Display.TERRAIN
             }
         );
 

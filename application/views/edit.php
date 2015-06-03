@@ -279,34 +279,38 @@
         }
 
         function savePolygon(){
-            //$('#koordinat').val(coordinates.toString());
-            var polyCoord = "";
-            for (i = 0; i<coordinates.length;i++){
-                polyCoord += coordinates[i].latitude;
-                polyCoord += "!"
-                polyCoord += coordinates[i].longitude;
-                polyCoord += "#"
+            if (confirm("Apakah anda yakin untuk melakukan perubahan ?") == true) {
+                var polyCoord = "";
+                for (i = 0; i<coordinates.length;i++){
+                    polyCoord += coordinates[i].latitude;
+                    polyCoord += "!"
+                    polyCoord += coordinates[i].longitude;
+                    polyCoord += "#"
+                }
+                // alert(polyCoord);
+                var id = "<?php echo $id;?>"
+                var coord = polyCoord;
+                var nama_tempat = $('#nama_tempat').val();
+                var deskripsi = $('#des_tempat').val();
+                var color = $('#polyColor').val();
+                var kategori = $('#kategori').val();
+                $.post( "<?php echo base_url(); ?>map/update_poly", 
+                    { 
+                        id : id,
+                        coord : coord, 
+                        nama : nama_tempat,
+                        deskripsi : deskripsi,
+                        color : color,
+                        kategori : kategori
+                    },
+                    function(data){
+                      alert('success');
+                      window.location.reload();
+                });
+            } else {
+                
             }
-            // alert(polyCoord);
-            var id = "<?php echo $id;?>"
-            var coord = polyCoord;
-            var nama_tempat = $('#nama_tempat').val();
-            var deskripsi = $('#des_tempat').val();
-            var color = $('#polyColor').val();
-            var kategori = $('#kategori').val();
-            $.post( "<?php echo base_url(); ?>map/update_poly", 
-                { 
-                    id : id,
-                    coord : coord, 
-                    nama : nama_tempat,
-                    deskripsi : deskripsi,
-                    color : color,
-                    kategori : kategori
-                },
-                function(data){
-                  alert('success');
-                  window.location.reload();
-            });
+            //$('#koordinat').val(coordinates.toString());
         }
        function init(){
             $.ajax({
