@@ -156,7 +156,7 @@
                 <hr style="margin-top:10px;" >
             </section>
             <section class="box" id="e">
-                <h3 style="margin-bottom:0px;">How to download view KML</h3>
+                <h3 style="margin-bottom:0px;">How to view KML</h3>
                 <hr style="margin-top:10px;" >
             </section>
         </div>
