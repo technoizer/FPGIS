@@ -2,11 +2,11 @@
 <kml xmlns='http://www.opengis.net/kml/2.2'>
   <Style id='globalStyles'>
       <LineStyle id='line'>
-        <color>880000ff</color>
+        <color>88ff0000</color>
         <width>3</width>
       </LineStyle>
       <PolyStyle id='poly'>
-        <color>880000ff</color>
+        <color>88ff0000</color>
         <fill>0</fill>
         <outline>1</outline>
       </PolyStyle>
@@ -23,23 +23,23 @@
       </BalloonStyle>
   </Style>
   <Placemark>
-    <name>ad</name>
+    <name>Java Island</name>
     <description>
         <![CDATA[
-          asd
+          Beautifull island
         ]]>
     </description>
     <styleUrl>#globalStyles</styleUrl>
     <Style>
       <PolyStyle>
-        <color>880000ff</color>
+        <color>88ff0000</color>
       </PolyStyle>
     </Style>
     <Polygon>
       <outerBoundaryIs>
         <LinearRing>
           <coordinates>
-            13.389013671875006,52.511985019200324 13.388498687744146,52.50822385418861 13.396180534362799,52.50864177730773 13.399270439147955,52.51349984195291 13.392318153381353,52.51457063343023 
+            105.34509552509945,-6.543689794431169 106.18005646259945,-5.844674127868642 108.06970490009945,-6.1942976591573276 108.86072052509945,-6.67464956824233 110.75036896259945,-6.543689794431169 112.42029083759945,-6.761936670305877 113.12341583759945,-7.02370259346334 112.90368927509945,-7.5467872909511815 114.66150177509945,-7.895161998524347 113.91443146259945,-8.417169818229523 112.64001740009945,-8.460639329904094 109.34411896259945,-7.808095343973233 108.33337677509945,-7.85163095189988 106.44372833759945,-7.328909672908632 
           </coordinates>
         </LinearRing>
       </outerBoundaryIs>

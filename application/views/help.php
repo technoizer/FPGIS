@@ -136,27 +136,81 @@
     <input type="hidden" value="<?php echo $_SESSION["username"]; ?>" id="user">
 
     <div class="row">
+        <style type="text/css">
+        </style>
         <div class="col-md-1">
         </div>
         <div class="top col-md-7"  style="padding-top:50px;">
             <section class="box" id="a">
-                <h3 style="margin-bottom:0px;">How to create new place</h3>
+                <h3 style="margin-bottom:0px;">How to create new place</h3><br>
+                <img src="<?php echo base_url() ?>assets/help/create-map.png" style="width: 100%; padding-bottom:10px" align="center"><br>
+                <ol>
+                    <li>Select menu "Create New Place"</li>
+                    <li>Make sure the button "Add Point Mode" in the ON position</li>
+                    <li>Start&nbsp;drawing points for your new place. You can click as many as you want, and drag the marker too</li>
+                    <li>Default&nbsp;color is red, but you can change it as you like by click Color box</li>
+                    <li>Choose your color then click OK button</li>
+                    <li>The next step is&nbsp;fill in data like its name, category, and description</li>
+                    <li>Click Save Polygon to save your new area</li>
+                </ol>
                 <hr style="margin-top:10px;" >
             </section>
             <section class="box" id="b">
-                <h3 style="margin-bottom:0px;">How to edit place</h3>
+                <h3 style="margin-bottom:0px;">How to edit place</h3><br>
+                <p>To edit your area, you can follow these steps :</p>
+                <p>&nbsp;</p>
+                <ol>
+                    <li>Click Map menu</li>
+                    <li>Find your area and right click on area you want to edit. <strong>Remember</strong> : you can only edit your area, not someone else's</li>
+                    <li>Click Edit button</li>
+                    <img src="<?php echo base_url() ?>assets/help/edit1.png" style="width: 30%; padding-bottom:10px;" align="center" >
+                    <li>Find your area by clicking "Zoom to Object" button on Toolbox</li>
+                    <img src="<?php echo base_url() ?>assets/help/edit2.png" style="width: 30%; padding-bottom:10px;" align="center" >
+                    <li>Don't forget to set Add Point in ON mode</li>
+                    <img src="<?php echo base_url() ?>assets/help/edit3.png" style="width: 30%; padding-bottom:10px;" align="center" >
+                    <li>You can start to edit by click "Delete Last Marker" to delete the last marker, or just add another marker</li>
+                    <img src="<?php echo base_url() ?>assets/help/edit4_1.png" style="width: 30%; padding-bottom:10px;" align="center" >
+                    <img src="<?php echo base_url() ?>assets/help/edit4.png" style="width: 30%; padding-bottom:10px;" align="center" >
+                    <li>You can edit the color and description of your area too, as easily as when adding a new area</li>
+                    <img src="<?php echo base_url() ?>assets/help/edit5.png" style="width: 100%; padding-bottom:10px;" align="center" >
+                    <li>Finish it by clicking Save Polygon button, and now you have successfully edit your area</li>
+                    <img src="<?php echo base_url() ?>assets/help/edit6.png" style="width: 100%; padding-bottom:10px;" align="center" >
+                </ol>
                 <hr style="margin-top:10px;" >
             </section>
             <section class="box" id="c">
                 <h3 style="margin-bottom:0px;">How to delete place</h3>
+                <p>To delete your area, you can follow these steps :</p>
+                <ol>
+                <li>Click Map menu</li>
+                <li>Find your area and right click on area you want to delete. <strong>Remember</strong> : you can only delete your area, not someone else's</li>
+                <li>Click Delete button</li>
+                <img src="<?php echo base_url() ?>assets/help/delete1.png" style="width: 30%; padding-bottom:10px;" align="center" >
+                <li>Confirm by clicking OK in dialog box if you want to continue, click Cancel if you don't want to delete</li>
+                <img src="<?php echo base_url() ?>assets/help/delete2.png" style="width: 50%; padding-bottom:10px;" align="center" >
+                <li>Your area successfully removed</li>
+                <img src="<?php echo base_url() ?>assets/help/delete3.png" style="width: 50%; padding-bottom:10px;" align="center" >
+                </ol>
                 <hr style="margin-top:10px;" >
             </section>
             <section class="box" id="d">
                 <h3 style="margin-bottom:0px;">How to download KML place</h3>
+                <p>First, click Map menu. You can download either your area or other's using right-click on the area you want, then click Download button as shown in the picture below. And it will automatically downloaded to your folder</p>
+                <img src="<?php echo base_url() ?>assets/help/donlot1.png" style="width: 100%; padding-bottom:10px;" align="center" >
                 <hr style="margin-top:10px;" >
             </section>
             <section class="box" id="e">
                 <h3 style="margin-bottom:0px;">How to view KML</h3>
+                <p>To view KML file, follow these steps :</p>
+                <ol>
+                <li>Click View KML menu</li>
+                <li>Select your KML file</li>
+                <img src="<?php echo base_url() ?>assets/help/view1.png" style="width: 30%; padding-bottom:10px;" align="center" >
+                <li>Click Open, then click Upload button on the right-side box</li>
+                <img src="<?php echo base_url() ?>assets/help/view2.png" style="width: 100%; padding-bottom:10px;" align="center" >
+                <li>KML will automatically loaded to the map</li>
+                <img src="<?php echo base_url() ?>assets/help/view3.png" style="width: 100%; padding-bottom:10px;" align="center" >
+                </ol>
                 <hr style="margin-top:10px;" >
             </section>
         </div>

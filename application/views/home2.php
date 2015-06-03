@@ -159,7 +159,7 @@
 
         var polygons = new Array();
         function doDelete(id_tempat){
-            if (confirm("Apakah anda yakin untuk menghapus this place  ?") == true) {
+            if (confirm("Are you sure you want to delete this place ?") == true) {
                 window.location.replace("<?php echo base_url();?>map/delete/"+id_tempat);
             } else {
                 
