@@ -14,6 +14,10 @@ class Map extends CI_Controller {
 	public function index(){
 		$this->load->view('home2');
 	}
+
+	public function help(){
+		$this->load->view('help');
+	}
 	
 	public function addPolygon(){
 		$this->load->view('createplace');
