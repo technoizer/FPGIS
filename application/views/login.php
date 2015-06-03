@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html >
   <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
+        <meta charset="UTF-8">
         <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
         <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
         <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+        <title>Community Web Mapping</title>
   </head>
   <body>
       <h1 class="text-center deskripsi">Community Web Mapping</h1>

@@ -82,6 +82,7 @@
             margin-bottom:7px;
         }
     </style>
+    <title>Community Web Mapping</title>
 </head>
 <body>
     <nav class="navbar navbar-default">
