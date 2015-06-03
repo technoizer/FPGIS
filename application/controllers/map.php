@@ -167,17 +167,16 @@ class Map extends CI_Controller {
     </Polygon>
   </Placemark>
 </kml>";
-		$myfile = fopen('tes.kml',"w") or die("Unable to open file!");
+		$file = 'download.kml';
+		$myfile = fopen($file,"w") or die("Unable to open file!");
 		fwrite($myfile, $kml);
 		fclose($myfile);
-
-		$file = $data[0]->nama_tempat.'.kml';
-
+		$str = $data[0]->nama_tempat.'.kml';
 		if (file_exists($file)) 
 		{
 			header('Content-Description: File Transfer');
 			header('Content-Type: application/octet-stream');
-			header('Content-Disposition: attachment; filename='.basename($file));
+			header('Content-Disposition: attachment; filename='.basename($str));
 			header('Expires: 0');
 			header('Cache-Control: must-revalidate');
 			header('Pragma: public');
