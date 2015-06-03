@@ -3,28 +3,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js"  type="text/javascript" charset="utf-8"></script>
-    <link rel="stylesheet" type="text/css" href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-pano.js" type="text/javascript" charset="utf-8"></script> 
-    <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/ie-emulation-modes-warning.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=7; IE=EmulateIE9; IE=10" />
     <style type="text/css">
-        html {
-            overflow:hidden;
-        }
-
         body {
             margin: 0;
             padding: 0;
             position: absolute;
-            overflow:hidden;
             width: 100%;
             height: 100%;
+            background-image: url("<?php echo base_url(); ?>assets/images/here.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        .podbar {
+            bottom:0;
+            position:fixed;
+            z-index:150;
+            _position:absolute;
+            _top:expression(eval(document.documentElement.scrollTop+
+                (document.documentElement.clientHeight-this.offsetHeight)));
+            height:35px;
         }
 
         button{
@@ -38,7 +42,7 @@
         }
 
         .footer {
-          position: absolute;
+          position: fixed;
           bottom: 0;
           width: 100%;
           height: 2.5%;
@@ -78,6 +82,22 @@
             z-index: 1;
         }
 
+        .top{
+            top:60px;
+        }
+
+        ul{ 
+          list-style-type: none;
+          border-left: 1px;
+        }
+
+        .box{
+            padding:10px;
+            margin-bottom: 10px;
+            color:black;
+            background-color: white;
+        }
+
     </style>
 </head>
 <body>
@@ -94,7 +114,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="#">Community Web Mapping</a>
+          <a class="navbar-brand" href="<?php echo base_url(); ?>">Community Web Mapping</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -115,13 +135,59 @@
     
     <input type="hidden" value="<?php echo $_SESSION["username"]; ?>" id="user">
 
-    <div id="mapContainer"></div>
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="top col-md-7"  style="padding-top:50px;">
+            <section class="box" id="a">
+                <h3 style="margin-bottom:0px;">How to create new place</h3>
+                <hr style="margin-top:10px;" >
+            </section>
+            <section class="box" id="b">
+                <h3 style="margin-bottom:0px;">How to edit place</h3>
+                <hr style="margin-top:10px;" >
+            </section>
+            <section class="box" id="c">
+                <h3 style="margin-bottom:0px;">How to delete place</h3>
+                <hr style="margin-top:10px;" >
+            </section>
+            <section class="box" id="d">
+                <h3 style="margin-bottom:0px;">How to download KML place</h3>
+                <hr style="margin-top:10px;" >
+            </section>
+            <section class="box" id="e">
+                <h3 style="margin-bottom:0px;">How to download view KML</h3>
+                <hr style="margin-top:10px;" >
+            </section>
+        </div>
+        <div class="top col-md-3" style="padding-top:50px;">
+            <ul class="nav" style="margin-top:60px;position:fixed;">
+                    <li class="page-scroll" style="margin-bottom:10px;background-color:#fff;">
+                        <a href="#a" style="color:black;">How to create new place</a>
+                    </li>
+                    <li class="page-scroll"  style="margin-bottom:10px;background-color:#fff;">
+                        <a href="#b" style="color:black;">How to edit place</a>
+                    </li>
+                    <li class="page-scroll"  style="margin-bottom:10px;background-color:#fff;">
+                        <a href="#c" style="color:black;">How to delete place</a>
+                    </li>
+                    <li class="page-scroll"  style="margin-bottom:10px;background-color:#fff;">
+                        <a href="#d" style="color:black;">How to download KML place</a>
+                    </li>
+                    <li class="page-scroll"  style="margin-bottom:10px;background-color:#fff;">
+                        <a href="#e" style="color:black;">How to view KML</a>
+                    </li>
+                </ul>
+        </div>
+    </div>
 
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted"> GIS 2015 - Teknik Informatika FTIf ITS</p>
-      </div>
-    </footer>
+    <!-- <div class="podbar"> -->
+        <div class="footer">
+          <div class="container">
+            <p class="text-muted"> GIS 2015 - Teknik Informatika FTIf ITS</p>
+          </div>
+        </div>
+    <!-- </div> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 </body>

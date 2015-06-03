@@ -98,7 +98,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="#">Community Web Mapping</a>
+          <a class="navbar-brand" href="<?php echo base_url(); ?>">Community Web Mapping</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -127,14 +127,14 @@
             <!-- <input type="text" placeholder="#rgba" id="polyColor" style="width:100px"> -->
         <input onchange= "changeColor()" type="color" id="polyColor" style="width:150px;height:30px;">
         <br><br>
-        Nama Tempat : <br>
+        Place Name : <br>
         <input type="text" id="nama_tempat" style="width:150px;color:black;"><br><br>
-        Kategori : <br>
+        Category : <br>
         <select style="width:150px;color:black;" id="kategori">
             <option value="Building">Building</option>
             <option value="House">House</option>
         </select><br><br>
-        Deskripsi : <br>
+        Description : <br>
         <textarea id="des_tempat" style="width:148px;height:100px;color:black;" ></textarea><br>
         <input type="hidden" id="koordinat"><br>
         <button onclick="savePolygon()" style="width:150px">Save Polygon</button><br>

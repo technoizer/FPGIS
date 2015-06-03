@@ -95,7 +95,7 @@
             <span class="icon-bar"></span>
           </button>
 
-          <a class="navbar-brand" href="#">Community Web Mapping</a>
+          <a class="navbar-brand" href="<?php echo base_url(); ?>">Community Web Mapping</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
