@@ -91,11 +91,18 @@
           border-left: 1px;
         }
 
+        hr { 
+            display: block;
+            border-color:black;
+            border-width: 3px;
+        } 
+
         .box{
             padding:10px;
             margin-bottom: 10px;
             color:black;
             background-color: white;
+            padding-left:30px; padding-right:30px;
         }
 
     </style>
@@ -134,15 +141,15 @@
     </nav>
     
     <input type="hidden" value="<?php echo $_SESSION["username"]; ?>" id="user">
-
     <div class="row">
         <style type="text/css">
         </style>
         <div class="col-md-1">
         </div>
-        <div class="top col-md-7"  style="padding-top:50px;">
+        <div class="top col-md-7"  style="padding-top:15px;">
             <section class="box" id="a">
-                <h3 style="margin-bottom:0px;">How to create new place</h3><br>
+                <h3 style="margin-bottom:0px;font-weight:bold;">How to create new place</h3><br>
+                <hr style="margin-top:0px;">
                 <img src="<?php echo base_url() ?>assets/help/create-map.png" style="width: 100%; padding-bottom:10px" align="center"><br>
                 <ol>
                     <li>Select menu "Create New Place"</li>
@@ -153,12 +160,11 @@
                     <li>The next step is&nbsp;fill in data like its name, category, and description</li>
                     <li>Click Save Polygon to save your new area</li>
                 </ol>
-                <hr style="margin-top:10px;" >
             </section>
             <section class="box" id="b">
-                <h3 style="margin-bottom:0px;">How to edit place</h3><br>
+                <h3 style="margin-bottom:0px;font-weight:bold;">How to edit place</h3><br>
+                <hr style="margin-top:0px;" >
                 <p>To edit your area, you can follow these steps :</p>
-                <p>&nbsp;</p>
                 <ol>
                     <li>Click Map menu</li>
                     <li>Find your area and right click on area you want to edit. <strong>Remember</strong> : you can only edit your area, not someone else's</li>
@@ -176,10 +182,10 @@
                     <li>Finish it by clicking Save Polygon button, and now you have successfully edit your area</li>
                     <img src="<?php echo base_url() ?>assets/help/edit6.png" style="width: 100%; padding-bottom:10px;" align="center" >
                 </ol>
-                <hr style="margin-top:10px;" >
             </section>
             <section class="box" id="c">
-                <h3 style="margin-bottom:0px;">How to delete place</h3>
+                <h3 style="margin-bottom:0px;font-weight:bold;">How to delete place</h3>
+                <hr style="margin-top:20px;" >
                 <p>To delete your area, you can follow these steps :</p>
                 <ol>
                 <li>Click Map menu</li>
@@ -191,16 +197,16 @@
                 <li>Your area successfully removed</li>
                 <img src="<?php echo base_url() ?>assets/help/delete3.png" style="width: 50%; padding-bottom:10px;" align="center" >
                 </ol>
-                <hr style="margin-top:10px;" >
             </section>
             <section class="box" id="d">
-                <h3 style="margin-bottom:0px;">How to download KML place</h3>
+                <h3 style="margin-bottom:0px;font-weight:bold;">How to download KML place</h3>
+                <hr style="margin-top:20px;" >
                 <p>First, click Map menu. You can download either your area or other's using right-click on the area you want, then click Download button as shown in the picture below. And it will automatically downloaded to your folder</p>
                 <img src="<?php echo base_url() ?>assets/help/donlot1.png" style="width: 100%; padding-bottom:10px;" align="center" >
-                <hr style="margin-top:10px;" >
             </section>
             <section class="box" id="e">
-                <h3 style="margin-bottom:0px;">How to view KML</h3>
+                <h3 style="margin-bottom:0px;font-weight:bold;">How to view KML</h3>
+                <hr style="margin-top:20px;" >
                 <p>To view KML file, follow these steps :</p>
                 <ol>
                 <li>Click View KML menu</li>
@@ -211,7 +217,6 @@
                 <li>KML will automatically loaded to the map</li>
                 <img src="<?php echo base_url() ?>assets/help/view3.png" style="width: 100%; padding-bottom:10px;" align="center" >
                 </ol>
-                <hr style="margin-top:10px;" >
             </section>
         </div>
         <div class="top col-md-3" style="padding-top:50px;">
@@ -244,4 +249,14 @@
     <!-- </div> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
+        <!-- jQuery -->
+    <script src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/classie.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="<?php echo base_url(); ?>assets/js/freelancer.js"></script>
 </body>
